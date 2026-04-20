@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Gegenwind — Kompassnadel (Monochrom Weiss)">
+  <title>Gegenwind — monochrom weiss</title>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="2"></circle>
+  <g transform="rotate(-3 100 100)">
+    <path d="M100 100 L116 100 L100 188 L84 100 Z" fill="#ffffff" fill-opacity="0.6"></path>
+    <path d="M100 12 L116 100 L84 100 Z" fill="#ffffff"></path>
+  </g>
+  <circle cx="100" cy="100" r="8" fill="#2C3E50"></circle>
+</svg>
