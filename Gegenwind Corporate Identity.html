@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>Gegenwind — Corporate Identity · Corporate Design</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/gegenwind-favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --slate: #2C3E50;
+    --slate-ink: #1d2a37;
+    --slate-soft: #47586A;
+    --sand: #E8DDD0;
+    --sand-deep: #D9CBB7;
+    --terracotta: #B87E6A;
+    --amber: #D4A574;
+    --paper: #F4EFE8;
+    --rule: rgba(44, 62, 80, 0.18);
+    --rule-soft: rgba(44, 62, 80, 0.10);
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #d9d1c4; }
+  body {
+    font-family: "Inter Tight", -apple-system, Helvetica, Arial, sans-serif;
+    color: var(--slate-ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+  }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* Print-ready A4 page units */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+    padding: 22mm 22mm 18mm;
+    margin: 12mm auto;
+    box-shadow: 0 6mm 14mm rgba(0,0,0,0.10);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .page.dark { background: var(--slate); color: var(--paper); }
+  .page.sand { background: var(--sand); }
+
+  /* Page chrome */
+  .page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+    padding-bottom: 6mm;
+    border-bottom: 0.3mm solid var(--rule);
+  }
+  .page.dark .page-head { color: rgba(244,239,232,0.55); border-bottom-color: rgba(244,239,232,0.2); }
+  .page-head .mini {
+    display: flex; align-items: center; gap: 3mm;
+  }
+  .page-head .mini img { width: 5mm; height: 5mm; }
+  .page-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+    padding-top: 4mm;
+    border-top: 0.3mm solid var(--rule);
+    margin-top: auto;
+  }
+  .page.dark .page-foot { color: rgba(244,239,232,0.5); border-top-color: rgba(244,239,232,0.2); }
+
+  .page-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 8mm 0 6mm;
+    min-height: 0;
+  }
+
+  /* Type */
+  h1, h2, h3, p, ul, ol, dl, dt, dd { margin: 0; padding: 0; font-weight: 400; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 6mm;
+  }
+  h1.title {
+    font-weight: 300;
+    font-size: 72pt;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    color: var(--slate-ink);
+  }
+  .page.dark h1.title { color: var(--paper); }
+  h2.sect {
+    font-weight: 400;
+    font-size: 32pt;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--slate-ink);
+    margin-bottom: 4mm;
+  }
+  h3.sub {
+    font-weight: 500;
+    font-size: 11pt;
+    letter-spacing: 0.02em;
+    color: var(--slate-ink);
+    margin-bottom: 2mm;
+  }
+  p.lede {
+    font-size: 14pt;
+    line-height: 1.35;
+    color: var(--slate-soft);
+    max-width: 140mm;
+    text-wrap: pretty;
+  }
+  .page.dark p.lede { color: rgba(244,239,232,0.75); }
+  p.body {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--slate-ink);
+    max-width: 150mm;
+    text-wrap: pretty;
+  }
+  .page.dark p.body { color: rgba(244,239,232,0.85); }
+
+  /* Cover */
+  .cover-mark {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10mm 0;
+  }
+  .cover-mark img { max-width: 100mm; height: auto; }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .cover-meta .k { color: var(--terracotta); margin-bottom: 2mm; display: block; }
+  .cover-meta .v { color: var(--slate-ink); font-size: 10pt; letter-spacing: 0.02em; text-transform: none; font-family: "Inter Tight"; }
+
+  /* TOC */
+  .toc-list { list-style: none; margin-top: 6mm; }
+  .toc-list li {
+    display: grid;
+    grid-template-columns: 14mm 1fr 16mm;
+    gap: 6mm;
+    padding: 4mm 0;
+    border-bottom: 0.2mm solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .toc-list .num { font-family: "JetBrains Mono", monospace; font-size: 9pt; color: var(--terracotta); letter-spacing: 0.12em; }
+  .toc-list .name { font-size: 14pt; color: var(--slate-ink); letter-spacing: -0.01em; }
+  .toc-list .pg { font-family: "JetBrains Mono", monospace; font-size: 9pt; color: var(--slate-soft); text-align: right; letter-spacing: 0.1em; }
+
+  /* Tone stripe */
+  .tone-stripe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 0.3mm solid var(--rule);
+    border-left: 0.3mm solid var(--rule);
+    margin-top: 8mm;
+  }
+  .tone-cell {
+    padding: 7mm 6mm;
+    border-right: 0.3mm solid var(--rule);
+    border-bottom: 0.3mm solid var(--rule);
+    min-height: 40mm;
+  }
+  .tone-cell .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 3mm;
+  }
+  .tone-cell .v { font-size: 13pt; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 2mm; color: var(--slate-ink); }
+  .tone-cell .n { font-size: 9pt; color: var(--slate-soft); line-height: 1.4; }
+
+  /* Logo spreads */
+  .logo-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12mm 0;
+  }
+  .logo-stage img { max-width: 120mm; max-height: 100mm; height: auto; }
+  .logo-stage.sq img { max-width: 90mm; }
+
+  .spec-table {
+    display: grid;
+    grid-template-columns: 30mm 1fr;
+    gap: 2mm 6mm;
+    font-size: 9.5pt;
+    margin-top: 6mm;
+  }
+  .spec-table dt {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    padding-top: 1mm;
+  }
+  .spec-table dd {
+    color: var(--slate-ink);
+    line-height: 1.45;
+    padding-bottom: 3mm;
+    border-bottom: 0.2mm solid var(--rule-soft);
+  }
+
+  /* Construction */
+  .construction-stage {
+    background: var(--sand);
+    padding: 10mm;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 110mm;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Colors */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6mm;
+    margin-top: 6mm;
+  }
+  .color-card {
+    border: 0.3mm solid var(--rule);
+    background: var(--paper);
+  }
+  .color-card .swatch {
+    height: 42mm;
+    border-bottom: 0.3mm solid var(--rule);
+  }
+  .color-card .info { padding: 4mm 5mm; }
+  .color-card .info .name {
+    font-size: 12pt;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin-bottom: 3mm;
+  }
+  .color-card .info .row {
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    padding: 1.2mm 0;
+    border-top: 0.15mm dashed var(--rule-soft);
+    letter-spacing: 0.04em;
+  }
+  .color-card .info .row .k { color: var(--terracotta); text-transform: uppercase; letter-spacing: 0.12em; }
+  .color-card .info .row .v { color: var(--slate-ink); }
+
+  /* Typography */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 40mm 1fr;
+    gap: 6mm 8mm;
+    margin-top: 4mm;
+    border-top: 0.3mm solid var(--rule);
+  }
+  .type-label {
+    padding: 6mm 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .type-label span { display: block; color: var(--slate-soft); margin-top: 1.5mm; letter-spacing: 0.04em; text-transform: none; font-size: 9pt; }
+  .type-sample {
+    padding: 6mm 0;
+    border-bottom: 0.3mm solid var(--rule);
+  }
+  .type-sample.last { border-bottom: none; }
+  .type-sample .meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    color: var(--slate-soft);
+    letter-spacing: 0.1em;
+    margin-top: 3mm;
+    text-transform: uppercase;
+  }
+  .display { font-weight: 300; font-size: 42pt; letter-spacing: -0.03em; line-height: 1; color: var(--slate-ink); }
+  .h-sample { font-weight: 500; font-size: 22pt; letter-spacing: -0.015em; line-height: 1.1; color: var(--slate-ink); }
+  .body-sample { font-weight: 400; font-size: 11pt; line-height: 1.55; color: var(--slate-ink); max-width: 120mm; }
+  .caps-sample { font-family: "JetBrains Mono", monospace; font-size: 10pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate-ink); }
+
+  /* Usage grid */
+  .usage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4mm;
+    margin-top: 6mm;
+  }
+  .usage-card {
+    border: 0.3mm solid var(--rule);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .usage-card .vis {
+    aspect-ratio: 1;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    padding: 6mm;
+    border-bottom: 0.3mm solid var(--rule);
+    position: relative;
+  }
+  .usage-card .vis img { max-width: 80%; max-height: 80%; }
+  .usage-card .vis.bad::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to top right, transparent calc(50% - 0.25mm), var(--terracotta) calc(50% - 0.25mm), var(--terracotta) calc(50% + 0.25mm), transparent calc(50% + 0.25mm));
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .usage-card .label {
+    padding: 3mm 4mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .usage-card .label .tag.do { color: #2e7d4f; }
+  .usage-card .label .tag.dont { color: var(--terracotta); }
+  .usage-card .label .desc { color: var(--slate-soft); text-align: right; flex: 1; margin-left: 3mm; text-transform: none; letter-spacing: 0.02em; }
+
+  /* Biz card */
+  .app-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin-top: 6mm;
+  }
+  .app-card {
+    border: 0.3mm solid var(--rule);
+    overflow: hidden;
+  }
+  .app-card .stage {
+    aspect-ratio: 4 / 3;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    padding: 6mm;
+    position: relative;
+  }
+  .app-card .stage.dark { background: var(--slate); }
+  .app-card .stage.paper { background: var(--paper); }
+  .app-card .label {
+    padding: 3mm 4mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+    background: var(--paper);
+  }
+  .app-card .label b { color: var(--slate-ink); font-weight: 500; }
+
+  .biz-card {
+    width: 85%;
+    aspect-ratio: 85 / 55;
+    background: var(--paper);
+    padding: 4mm 5mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 2mm 6mm rgba(0,0,0,0.12);
+  }
+  .biz-card .top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  .biz-card .name { font-size: 8pt; font-weight: 500; letter-spacing: -0.005em; }
+  .biz-card .role { font-family: "JetBrains Mono", monospace; font-size: 5.5pt; color: var(--slate-soft); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 0.7mm; }
+  .biz-card .contact { font-family: "JetBrains Mono", monospace; font-size: 5pt; color: var(--slate-soft); letter-spacing: 0.08em; line-height: 1.8; }
+  .biz-card img.mk { width: 8mm; height: 8mm; }
+
+  /* Letterhead */
+  .letterhead {
+    width: 90%;
+    aspect-ratio: 210 / 297;
+    background: var(--paper);
+    padding: 7mm 8mm;
+    display: flex; flex-direction: column;
+    box-shadow: 0 2mm 6mm rgba(0,0,0,0.12);
+    font-size: 4.5pt;
+    color: var(--slate-ink);
+  }
+  .letterhead .lh-head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 0.2mm solid var(--rule); padding-bottom: 3mm; }
+  .letterhead .lh-head img { width: 22mm; }
+  .letterhead .lh-head .addr { font-family: "JetBrains Mono", monospace; font-size: 4pt; color: var(--slate-soft); letter-spacing: 0.08em; text-align: right; line-height: 1.7; }
+  .letterhead .lh-body { margin-top: 5mm; line-height: 1.6; font-size: 5pt; }
+  .letterhead .lh-body .lh-line { height: 0.15mm; background: var(--rule); margin: 1mm 0; }
+  .letterhead .lh-body .lh-line.short { width: 60%; }
+  .letterhead .lh-body .lh-line.med { width: 80%; }
+  .letterhead .lh-foot {
+    margin-top: auto;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 3.8pt;
+    color: var(--slate-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-top: 0.2mm solid var(--rule);
+    padding-top: 3mm;
+    display: flex; justify-content: space-between;
+  }
+
+  /* Social cover */
+  .social-cover {
+    background: var(--slate);
+    padding: 8mm;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .social-cover img { max-width: 70%; }
+
+  /* Download list */
+  .download-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-top: 6mm;
+  }
+  .dl-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4mm 5mm;
+    border: 0.3mm solid var(--rule);
+    background: var(--paper);
+  }
+  .dl-row .n { font-size: 10pt; font-weight: 500; letter-spacing: -0.005em; }
+  .dl-row .d { font-family: "JetBrains Mono", monospace; font-size: 7pt; color: var(--slate-soft); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1mm; }
+  .dl-row .ext {
+    font-family: "JetBrains Mono", monospace; font-size: 7pt;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--terracotta);
+    border: 0.3mm solid var(--rule);
+    padding: 1.5mm 2.5mm;
+  }
+
+  /* Favicon preview row */
+  .favi-preview {
+    display: flex; align-items: flex-end; gap: 10mm;
+    padding: 8mm 4mm;
+    background: var(--sand);
+    justify-content: center;
+    border: 0.3mm solid var(--rule);
+  }
+  .favi-preview .col { display: flex; flex-direction: column; align-items: center; gap: 3mm; }
+  .favi-preview .col .sz { font-family: "JetBrains Mono", monospace; font-size: 7pt; color: var(--slate-soft); letter-spacing: 0.1em; }
+
+  /* Screen toggle controls (non-print) */
+  .controls {
+    position: fixed; top: 10px; right: 10px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    display: flex; gap: 14px; align-items: center;
+    z-index: 100;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  .controls button {
+    font: inherit; background: transparent; border: 1px solid var(--rule);
+    padding: 6px 12px; cursor: pointer;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-ink);
+  }
+  .controls button:hover { background: var(--sand); }
+
+  @media print {
+    html, body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+    .controls { display: none; }
+  }
+
+  /* Section divider pages */
+  .divider-big {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .divider-big .eye {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8mm;
+  }
+  .divider-big h2 {
+    font-weight: 300;
+    font-size: 54pt;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: var(--slate-ink);
+    max-width: 150mm;
+  }
+  .page.dark .divider-big h2 { color: var(--paper); }
+  .divider-big p { font-size: 13pt; color: var(--slate-soft); margin-top: 6mm; max-width: 140mm; line-height: 1.45; }
+  .page.dark .divider-big p { color: rgba(244,239,232,0.7); }
+
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <span>Gegenwind CI</span>
+  <button onclick="window.print()">Als PDF drucken</button>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 1 — COVER -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="01 Cover">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind</span></div>
+    <span>Corporate Identity · Corporate Design</span>
+  </div>
+  <div class="page-body">
+    <div style="padding-top: 4mm;">
+      <div class="eyebrow">Kompassnadel · Konzept 01</div>
+      <h1 class="title">Corporate<br>Identity.</h1>
+      <p class="lede" style="margin-top: 8mm;">Kurs halten, wenn der Wind dreht. Das vollständige Marken­handbuch für Gegenwind — Logo, Farbe, Typografie und Anwendung.</p>
+    </div>
+    <div class="cover-mark">
+      <img src="assets/gegenwind-lockup-vertical.png" alt="Gegenwind Lockup">
+    </div>
+    <div class="cover-meta">
+      <div><span class="k">Version</span><div class="v">1.0</div></div>
+      <div><span class="k">Dokument</span><div class="v">CI / CD Manual</div></div>
+      <div><span class="k">Datum</span><div class="v">Juni 2026</div></div>
+    </div>
+  </div>
+  <div class="page-foot">
+    <span>Gegenwind · Zürich</span>
+    <span>Seite 01</span>
+  </div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 2 — TOC -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="02 Inhalt">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>Inhalt</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">Inhalts­verzeichnis</div>
+    <h2 class="sect">Was Sie hier finden.</h2>
+    <p class="lede" style="margin-top: 3mm;">Diese Richtlinien halten die Marke zusammen — über Kanäle, Teams und Jahre hinweg.</p>
+    <ul class="toc-list">
+      <li><span class="num">01</span><span class="name">Marke und Haltung</span><span class="pg">S. 04</span></li>
+      <li><span class="num">02</span><span class="name">Das Logo-System</span><span class="pg">S. 06</span></li>
+      <li><span class="num">03</span><span class="name">Konstruktion und Schutzraum</span><span class="pg">S. 08</span></li>
+      <li><span class="num">04</span><span class="name">Farbsystem</span><span class="pg">S. 09</span></li>
+      <li><span class="num">05</span><span class="name">Typografie</span><span class="pg">S. 10</span></li>
+      <li><span class="num">06</span><span class="name">Korrekte Anwendung</span><span class="pg">S. 11</span></li>
+      <li><span class="num">07</span><span class="name">Anwendungs­beispiele</span><span class="pg">S. 12</span></li>
+      <li><span class="num">08</span><span class="name">Datei-Übersicht</span><span class="pg">S. 13</span></li>
+    </ul>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 02</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 3 — SECTION DIVIDER: Identity -->
+<!-- ============================================================= -->
+<div class="page dark" data-screen-label="03 Teil I">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span style="color: var(--paper);">Gegenwind · CI/CD</span></div>
+    <span>Teil I</span>
+  </div>
+  <div class="divider-big">
+    <div class="eye">Teil I · Corporate Identity</div>
+    <h2>Haltung vor<br>Gestaltung.</h2>
+    <p>Die sichtbaren Elemente sind Folge einer Haltung, nicht ihr Ursprung. Bevor wir zeichnen, verstehen wir, wofür Gegenwind steht — und wofür nicht.</p>
+  </div>
+  <div class="page-foot"><span style="color: rgba(244,239,232,0.55);">Gegenwind · Zürich</span><span style="color: rgba(244,239,232,0.55);">Seite 03</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 4 — MARKENKERN / TONE -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="04 Markenkern">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>01 · Marke und Haltung</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">01 · Markenkern</div>
+    <h2 class="sect">Sechs Worte, die<br>jede Entscheidung tragen.</h2>
+    <p class="lede" style="margin-top: 3mm;">Jede gestalterische und sprachliche Entscheidung prüft sich an diesen sechs Begriffen. Was nicht passt, gehört nicht ins System.</p>
+
+    <div class="tone-stripe">
+      <div class="tone-cell"><div class="k">Standhaft</div><div class="v">Aufrecht, nicht kämpferisch.</div><div class="n">Haltung statt Angriff. Wir pflegen Kurs, ohne andere zu verurteilen.</div></div>
+      <div class="tone-cell"><div class="k">Geerdet</div><div class="v">Klar, nicht dramatisch.</div><div class="n">Fakten vor Pathos. Erfahrungsberichte bekommen Raum — und Einordnung.</div></div>
+      <div class="tone-cell"><div class="k">Empathisch</div><div class="v">Nah, nicht sentimental.</div><div class="n">Respekt vor Betroffenen. Verständnis ohne Voyeurismus.</div></div>
+      <div class="tone-cell"><div class="k">Seriös</div><div class="v">Ruhig, nicht streng.</div><div class="n">Partner­fähig mit Beratungs­stellen wie infoSekta.</div></div>
+      <div class="tone-cell"><div class="k">Unaufgeregt</div><div class="v">Leise, nicht passiv.</div><div class="n">Zurück­haltende Stimme, klare Richtung.</div></div>
+      <div class="tone-cell"><div class="k">Klar</div><div class="v">Konkret, nicht schmückend.</div><div class="n">Keine Metaphern-Kaskaden. Jedes Wort trägt Gewicht.</div></div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 04</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 5 — SECTION DIVIDER: Design -->
+<!-- ============================================================= -->
+<div class="page sand" data-screen-label="05 Teil II">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>Teil II</span>
+  </div>
+  <div class="divider-big">
+    <div class="eye">Teil II · Corporate Design</div>
+    <h2>Die Kompass­<br>nadel.</h2>
+    <p>Ein Zeichen, das Richtung behauptet, ohne Perfektion vorzu­geben. Eine Nadel, deren Spitze um drei Grad versetzt ist — der <em>Little Blip</em>, unsere bewusste Signatur.</p>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 05</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 6 — LOGO PRIMARY + VARIANTS -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="06 Logo-System">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>02 · Logo-System</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">02 · Primärmarke</div>
+    <h2 class="sect">Das Lockup.</h2>
+    <p class="lede" style="margin-top: 3mm;">Die horizontale Kombination aus Kompass­nadel und Wortmarke ist die primäre Erscheinung von Gegenwind.</p>
+
+    <div class="logo-stage" style="flex: 0 0 auto; padding: 14mm 0; border: 0.3mm solid var(--rule); margin-top: 6mm; background: var(--paper);">
+      <img src="assets/gegenwind-lockup-horizontal.png" alt="Gegenwind Lockup horizontal">
+    </div>
+
+    <dl class="spec-table">
+      <dt>Proportion</dt><dd>Bildmarke und Wortmarke stehen im Verhältnis 1 : 2,4. Dazwischen ein vertikaler Trennstrich in Primärfarbe.</dd>
+      <dt>Mindest­breite</dt><dd>96 px digital / 30 mm im Druck.</dd>
+      <dt>Einsatz</dt><dd>Als Absender auf Dokumenten, im Website-Header, Social-Bios, Präsentationen, Geschäfts­papieren.</dd>
+    </dl>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 06</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 7 — LOGO VARIANTS (4-up) -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="07 Varianten">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>02 · Varianten</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">02 · Logo-Varianten</div>
+    <h2 class="sect">Vier Auftritte,<br>ein Zeichen.</h2>
+    <p class="lede" style="margin-top: 3mm; margin-bottom: 6mm;">Für jede Situation die richtige Form — von Visitenkarte bis Social-Avatar.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; flex: 1;">
+      <div style="border: 0.3mm solid var(--rule); display: flex; flex-direction: column;">
+        <div style="flex: 1; background: var(--paper); display: flex; align-items: center; justify-content: center; padding: 8mm; border-bottom: 0.3mm solid var(--rule);">
+          <img src="assets/gegenwind-lockup-vertical.png" alt="" style="max-width: 55mm; max-height: 55mm;">
+        </div>
+        <div style="padding: 3mm 4mm; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between;">
+          <span style="color: var(--slate-ink); font-weight: 500;">Vertikal</span>
+          <span style="color: var(--slate-soft);">Zentriert · Farbe</span>
+        </div>
+      </div>
+      <div style="border: 0.3mm solid var(--rule); display: flex; flex-direction: column;">
+        <div style="flex: 1; background: var(--sand); display: flex; align-items: center; justify-content: center; padding: 8mm; border-bottom: 0.3mm solid var(--rule);">
+          <img src="assets/gegenwind-icon.png" alt="" style="max-width: 50mm;">
+        </div>
+        <div style="padding: 3mm 4mm; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between;">
+          <span style="color: var(--slate-ink); font-weight: 500;">Bildmarke</span>
+          <span style="color: var(--slate-soft);">Icon · Avatar</span>
+        </div>
+      </div>
+      <div style="border: 0.3mm solid var(--rule); display: flex; flex-direction: column;">
+        <div style="flex: 1; background: var(--slate); display: flex; align-items: center; justify-content: center; padding: 8mm; border-bottom: 0.3mm solid var(--rule);">
+          <img src="assets/gegenwind-lockup-horizontal-dark.png" alt="" style="max-width: 70mm;">
+        </div>
+        <div style="padding: 3mm 4mm; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between;">
+          <span style="color: var(--slate-ink); font-weight: 500;">Dunkel</span>
+          <span style="color: var(--slate-soft);">Sand + Amber</span>
+        </div>
+      </div>
+      <div style="border: 0.3mm solid var(--rule); display: flex; flex-direction: column;">
+        <div style="flex: 1; background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 8mm; border-bottom: 0.3mm solid var(--rule);">
+          <img src="assets/gegenwind-lockup-horizontal-mono.png" alt="" style="max-width: 70mm;">
+        </div>
+        <div style="padding: 3mm 4mm; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between;">
+          <span style="color: var(--slate-ink); font-weight: 500;">Monochrom</span>
+          <span style="color: var(--slate-soft);">Druck · Fax · Stempel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 07</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 8 — CONSTRUCTION + FAVICONS -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="08 Konstruktion">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>03 · Konstruktion</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">03 · Geometrie & Schutzraum</div>
+    <h2 class="sect">Konstruktion.</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 5mm; flex: 1;">
+      <div>
+        <div class="construction-stage">
+          <svg width="100%" viewBox="0 0 260 260" fill="none">
+            <rect x="10" y="10" width="240" height="240" fill="none" stroke="#B87E6A" stroke-opacity="0.6" stroke-dasharray="4 4" stroke-width="1"/>
+            <circle cx="130" cy="130" r="106" fill="none" stroke="#2C3E50" stroke-opacity="0.22" stroke-width="1.2"/>
+            <line x1="30" y1="130" x2="230" y2="130" stroke="#2C3E50" stroke-opacity="0.14" stroke-dasharray="3 3" stroke-width="0.75"/>
+            <line x1="130" y1="30" x2="130" y2="230" stroke="#2C3E50" stroke-opacity="0.14" stroke-dasharray="3 3" stroke-width="0.75"/>
+            <g transform="rotate(-3 130 130)">
+              <path d="M130 130 L146 130 L130 218 L114 130 Z" fill="#2C3E50"/>
+              <path d="M130 42 L146 130 L114 130 Z" fill="#B87E6A"/>
+            </g>
+            <circle cx="130" cy="130" r="8" fill="#F4EFE8"/>
+            <line x1="10" y1="256" x2="30" y2="256" stroke="#B87E6A" stroke-width="1.2"/>
+            <line x1="10" y1="252" x2="10" y2="260" stroke="#B87E6A" stroke-width="1.2"/>
+            <line x1="30" y1="252" x2="30" y2="260" stroke="#B87E6A" stroke-width="1.2"/>
+            <text x="20" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#B87E6A" letter-spacing="1">X</text>
+            <text x="130" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#47586A" letter-spacing="1.2">LITTLE BLIP · −3°</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub" style="margin-top: 0;">Bauprinzipien</h3>
+        <dl class="spec-table" style="margin-top: 3mm;">
+          <dt>Raster</dt><dd>200 × 200 Einheiten. Alle Formen ganzzahlig am Raster ausgerichtet.</dd>
+          <dt>Nadel</dt><dd>Raute, 176 Einheiten hoch, 32 breit. Oben Terracotta, unten Slate.</dd>
+          <dt>Pivot</dt><dd>Kreis Radius 8 in Papier-Farbe, exakt zentriert.</dd>
+          <dt>Ring</dt><dd>Radius 88. Sichtbar ab 48 px. Stärke 2.</dd>
+          <dt>Rotation</dt><dd>Exakt −3°. Nicht mehr. Nicht weniger.</dd>
+          <dt>Schutzraum</dt><dd>X = 20 Einheiten (halbe Nadelbreite) zu allen Seiten.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top: 6mm;">
+      <h3 class="sub">Favicon · Skalierung</h3>
+      <div class="favi-preview" style="margin-top: 3mm;">
+        <div class="col"><img src="assets/gegenwind-favicon-256.png" style="width: 28mm; height: 28mm;"><span class="sz">256 px</span></div>
+        <div class="col"><img src="assets/gegenwind-favicon-64.png" style="width: 14mm; height: 14mm;"><span class="sz">64 px</span></div>
+        <div class="col"><img src="assets/gegenwind-favicon-32.png" style="width: 9mm; height: 9mm;"><span class="sz">32 px</span></div>
+        <div class="col"><img src="assets/gegenwind-favicon-16.png" style="width: 5mm; height: 5mm;"><span class="sz">16 px</span></div>
+      </div>
+      <p class="body" style="margin-top: 3mm; font-size: 9pt;">Ab 32 px vereinfacht: Ring entfällt, Nadel und Pivot bleiben. Ab 16 px nur noch Nadel — der Little Blip bleibt erkennbar.</p>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 08</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 9 — COLOR -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="09 Farbe">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>04 · Farbsystem</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">04 · Farb­system</div>
+    <h2 class="sect">Slate. Sand.<br>Terracotta.</h2>
+    <p class="lede" style="margin-top: 3mm;">Warm-neutral, bewusst entsättigt. Terracotta ist Akzent — nie Flächen­farbe. Amber nur auf dunklem Grund.</p>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="swatch" style="background: #2C3E50"></div>
+        <div class="info">
+          <div class="name">Slate · Primär</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#2C3E50</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">44 · 62 · 80</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">82 · 64 · 46 · 37</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">7546 C</span></div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background: #F4EFE8"></div>
+        <div class="info">
+          <div class="name">Papier · Hintergrund</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#F4EFE8</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">244 · 239 · 232</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">3 · 4 · 8 · 0</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">Warm Grey 1 C</span></div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background: #E8DDD0"></div>
+        <div class="info">
+          <div class="name">Sand · Sekundär</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#E8DDD0</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">232 · 221 · 208</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">9 · 12 · 18 · 0</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">7527 C</span></div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background: #B87E6A"></div>
+        <div class="info">
+          <div class="name">Terracotta · Akzent</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#B87E6A</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">184 · 126 · 106</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">22 · 56 · 55 · 8</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">7522 C</span></div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background: #D4A574"></div>
+        <div class="info">
+          <div class="name">Amber · Akzent dunkel</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#D4A574</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">212 · 165 · 116</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">15 · 37 · 58 · 2</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">7509 C</span></div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background: #47586A"></div>
+        <div class="info">
+          <div class="name">Slate Soft · Sekundärtext</div>
+          <div class="row"><span class="k">HEX</span><span class="v">#47586A</span></div>
+          <div class="row"><span class="k">RGB</span><span class="v">71 · 88 · 106</span></div>
+          <div class="row"><span class="k">CMYK</span><span class="v">70 · 51 · 38 · 20</span></div>
+          <div class="row"><span class="k">Pantone</span><span class="v">7545 C</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 09</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 10 — TYPOGRAPHY -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="10 Typografie">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>05 · Typografie</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">05 · Typografie</div>
+    <h2 class="sect">Inter Tight und<br>JetBrains Mono.</h2>
+    <p class="lede" style="margin-top: 3mm;">Eine humanistische Grotesk für Titel und Text, eine Monospace für Labels und Metadaten. Beide frei nutzbar via Google Fonts (SIL-Lizenz).</p>
+
+    <div class="type-grid">
+      <div class="type-label">Display<span>Inter Tight · Light 300</span></div>
+      <div class="type-sample">
+        <div class="display">gegenwind</div>
+        <div class="meta">42 pt · tracking −3% · line-height 1.0</div>
+      </div>
+
+      <div class="type-label">Headline<span>Inter Tight · Medium 500</span></div>
+      <div class="type-sample">
+        <div class="h-sample">Kurs halten, wenn der Wind dreht.</div>
+        <div class="meta">22 pt · tracking −1.5% · line-height 1.1</div>
+      </div>
+
+      <div class="type-label">Fließtext<span>Inter Tight · Regular 400</span></div>
+      <div class="type-sample">
+        <div class="body-sample">Eine Plattform für Menschen, die sich nach Narzissmus, spirituellem Missbrauch oder sektenhafter Kontrolle zur eigenen Wahrnehmung zurückfinden. Wir vermitteln Information, Austausch und qualifizierte Hilfe — unaufgeregt, geerdet, nah.</div>
+        <div class="meta">11 pt · line-height 1.55</div>
+      </div>
+
+      <div class="type-label last">Label / Meta<span>JetBrains Mono · 400</span></div>
+      <div class="type-sample last">
+        <div class="caps-sample">KONTAKT · IMPRESSUM · DATENSCHUTZ · 2026</div>
+        <div class="meta">10 pt · tracking +16% · uppercase</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 10</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 11 — USAGE DO / DON'T -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="11 Anwendung">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>06 · Korrekte Anwendung</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">06 · Do & Don't</div>
+    <h2 class="sect">Das Logo atmet.</h2>
+    <p class="lede" style="margin-top: 3mm;">Die Nadel verlangt Ruhe. Keine Rahmen, keine Verzerrungen, keine Effekte — und niemals über unruhigem Bild­material.</p>
+
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="vis"><img src="assets/gegenwind-icon.png" alt=""></div>
+        <div class="label"><span class="tag do">✓ Do</span><span class="desc">Ruhiger Grund, voller Schutzraum.</span></div>
+      </div>
+      <div class="usage-card">
+        <div class="vis" style="background: var(--slate);"><img src="assets/gegenwind-icon-dark.png" alt=""></div>
+        <div class="label"><span class="tag do">✓ Do</span><span class="desc">Dunkle Variante, Amber-Akzent.</span></div>
+      </div>
+      <div class="usage-card">
+        <div class="vis" style="background: #ffffff;"><img src="assets/gegenwind-icon-mono-black.png" alt=""></div>
+        <div class="label"><span class="tag do">✓ Do</span><span class="desc">Monochrom für Druck &amp; Stempel.</span></div>
+      </div>
+      <div class="usage-card">
+        <div class="vis bad"><img src="assets/gegenwind-icon.png" alt="" style="transform: skewX(-15deg);"></div>
+        <div class="label"><span class="tag dont">✕ Don't</span><span class="desc">Nicht neigen oder verzerren.</span></div>
+      </div>
+      <div class="usage-card">
+        <div class="vis bad" style="background: linear-gradient(135deg, #6BC5D2, #FF7A59);"><img src="assets/gegenwind-icon-mono-white.png" alt=""></div>
+        <div class="label"><span class="tag dont">✕ Don't</span><span class="desc">Keine bunten Hintergründe.</span></div>
+      </div>
+      <div class="usage-card">
+        <div class="vis bad"><img src="assets/gegenwind-icon.png" alt="" style="transform: rotate(22deg);"></div>
+        <div class="label"><span class="tag dont">✕ Don't</span><span class="desc">Nie über −3° drehen.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 11</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 12 — APPLICATIONS -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="12 Beispiele">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>07 · Anwendungs­beispiele</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">07 · In Anwendung</div>
+    <h2 class="sect">In der Welt.</h2>
+    <p class="lede" style="margin-top: 3mm;">Visitenkarte, Briefbogen, Social-Cover — das System bleibt ruhig, egal wo es steht.</p>
+
+    <div class="app-row">
+      <div class="app-card">
+        <div class="stage">
+          <div class="biz-card">
+            <div class="top-row">
+              <div>
+                <div class="name">Thomas Meier</div>
+                <div class="role">Gründer</div>
+              </div>
+              <img class="mk" src="assets/gegenwind-icon.png" alt="">
+            </div>
+            <div class="contact">
+              gegenwind.ch<br>
+              <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8acb0b7b5b9ab98bfbdbfbdb6afb1b6bcf6bbb0">[email&#160;protected]</a><br>
+              +41 00 000 00 00
+            </div>
+          </div>
+        </div>
+        <div class="label"><b>Visitenkarte</b> · 85 × 55 mm · Papier matt</div>
+      </div>
+
+      <div class="app-card">
+        <div class="stage paper">
+          <div class="letterhead">
+            <div class="lh-head">
+              <img src="assets/gegenwind-lockup-horizontal.png" alt="">
+              <div class="addr">
+                Gegenwind<br>Beispielstrasse 1<br>8000 Zürich<br>gegenwind.ch
+              </div>
+            </div>
+            <div class="lh-body">
+              <div style="margin-bottom: 2mm; font-family: 'JetBrains Mono', monospace; font-size: 4pt; color: var(--slate-soft); letter-spacing: 0.1em;">ZÜRICH · JUNI 2026</div>
+              <div>Sehr geehrte Damen und Herren,</div>
+              <div class="lh-line med"></div>
+              <div class="lh-line"></div>
+              <div class="lh-line short"></div>
+              <div class="lh-line"></div>
+              <div class="lh-line med"></div>
+              <div class="lh-line short"></div>
+              <div style="margin-top: 4mm;">Mit freundlichen Grüssen</div>
+              <div style="margin-top: 5mm;">Thomas Meier</div>
+            </div>
+            <div class="lh-foot">
+              <span>Gegenwind · CH-8000</span>
+              <span>Seite 1 / 1</span>
+            </div>
+          </div>
+        </div>
+        <div class="label"><b>Briefbogen</b> · A4 · 80 g/m² Offsetpapier</div>
+      </div>
+
+      <div class="app-card" style="grid-column: span 2;">
+        <div class="stage dark" style="aspect-ratio: 16/5; padding: 0;">
+          <div class="social-cover" style="aspect-ratio: auto; width: 100%; height: 100%; padding: 6mm;">
+            <img src="assets/gegenwind-lockup-horizontal-white.png" alt="">
+          </div>
+        </div>
+        <div class="label"><b>Social Cover</b> · 1920 × 1080 px · LinkedIn / Website-Header</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 12</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 13 — FILES -->
+<!-- ============================================================= -->
+<div class="page" data-screen-label="13 Dateien">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span>Gegenwind · CI/CD</span></div>
+    <span>08 · Datei-Übersicht</span>
+  </div>
+  <div class="page-body">
+    <div class="eyebrow">08 · Dateien</div>
+    <h2 class="sect">Alle Assets.</h2>
+    <p class="lede" style="margin-top: 3mm;">Das komplette Paket zum Download. Für jede Anwendung die richtige Datei — PNG für universelle Portabilität, SVG für Web und Vektor­arbeit.</p>
+
+    <h3 class="sub" style="margin-top: 8mm;">Lockups</h3>
+    <div class="download-grid">
+      <a class="dl-row" href="assets/gegenwind-lockup-horizontal.png" download>
+        <div><div class="n">Lockup horizontal</div><div class="d">Primärmarke · Farbe</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-lockup-vertical.png" download>
+        <div><div class="n">Lockup vertikal</div><div class="d">Zentriert · Farbe</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-lockup-horizontal-dark.png" download>
+        <div><div class="n">Lockup · dunkel</div><div class="d">Für Slate-Hintergrund</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-lockup-horizontal-mono.png" download>
+        <div><div class="n">Lockup · monochrom</div><div class="d">Schwarz für Druck</div></div><div class="ext">PNG</div>
+      </a>
+    </div>
+
+    <h3 class="sub" style="margin-top: 6mm;">Icon &amp; Favicon</h3>
+    <div class="download-grid">
+      <a class="dl-row" href="assets/gegenwind-icon.png" download>
+        <div><div class="n">Icon</div><div class="d">1024 × 1024 · Farbe</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-icon-dark.png" download>
+        <div><div class="n">Icon · dunkel</div><div class="d">Avatar auf Slate</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-icon-mono-black.png" download>
+        <div><div class="n">Icon · schwarz</div><div class="d">Monochrom</div></div><div class="ext">PNG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-favicon-256.png" download>
+        <div><div class="n">Favicon · 256 / 64 / 32 / 16</div><div class="d">Web-Icon Paket</div></div><div class="ext">PNG</div>
+      </a>
+    </div>
+
+    <h3 class="sub" style="margin-top: 6mm;">Vektor (SVG)</h3>
+    <div class="download-grid">
+      <a class="dl-row" href="assets/gegenwind-icon.svg" download>
+        <div><div class="n">Icon</div><div class="d">Kompassnadel · Vektor</div></div><div class="ext">SVG</div>
+      </a>
+      <a class="dl-row" href="assets/gegenwind-favicon.svg" download>
+        <div><div class="n">Favicon</div><div class="d">Vereinfacht · Vektor</div></div><div class="ext">SVG</div>
+      </a>
+    </div>
+  </div>
+  <div class="page-foot"><span>Gegenwind · Zürich</span><span>Seite 13</span></div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PAGE 14 — CLOSING -->
+<!-- ============================================================= -->
+<div class="page dark" data-screen-label="14 Abschluss">
+  <div class="page-head">
+    <div class="mini"><img src="assets/gegenwind-favicon-256.png" alt=""><span style="color: var(--paper);">Gegenwind · CI/CD</span></div>
+    <span>Abschluss</span>
+  </div>
+  <div class="divider-big">
+    <div class="eye">Kurs halten</div>
+    <h2>Der Wind dreht.<br>Die Nadel bleibt.</h2>
+    <p>Ein konsistent angewendetes System wird zur Haltung. Danke, dass Sie Gegenwind mittragen.</p>
+    <div style="margin-top: 18mm; display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,239,232,0.5); margin-bottom: 3mm;">Kontakt</div>
+        <div style="font-size: 12pt; color: var(--paper);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d050c0101022d0a080a08031a040309430e05">[email&#160;protected]</a></div>
+        <div style="font-size: 10pt; color: rgba(244,239,232,0.7); margin-top: 1.5mm;">gegenwind.ch</div>
+      </div>
+      <img src="assets/gegenwind-icon-dark.png" style="width: 28mm; height: 28mm;" alt="">
+    </div>
+  </div>
+  <div class="page-foot"><span style="color: rgba(244,239,232,0.55);">Gegenwind · CI/CD · V1</span><span style="color: rgba(244,239,232,0.55);">Seite 14 / 14</span></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script></body>
+</html>
