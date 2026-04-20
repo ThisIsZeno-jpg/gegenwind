@@ -3,10 +3,14 @@ import { unstable_cache } from 'next/cache'
 
 export const getSettings = unstable_cache(
   async () => {
-    const payload = await getPayload()
-    return payload.findGlobal({
-      slug: 'site-settings',
-    })
+    try {
+      const payload = await getPayload()
+      return payload.findGlobal({
+        slug: 'site-settings',
+      })
+    } catch {
+      return null
+    }
   },
   ['site-settings'],
   {
