@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datenschutzerklärung — Gegenwind</title>
+  <meta name="description" content="Datenschutzerklärung von Gegenwind gemäss schweizerischem Datenschutzgesetz (DSG/nDSG) und DSGVO.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/gegenwind-favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="assets/gegenwind-favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --slate:       #2C3E50;
+      --slate-ink:   #1D2A37;
+      --slate-soft:  #47586A;
+      --paper:       #F4EFE8;
+      --sand:        #E8DDD0;
+      --sand-deep:   #D9CBB7;
+      --terracotta:  #B87E6A;
+      --amber:       #D4A574;
+      --rule:        rgba(44,62,80,.18);
+      --rule-soft:   rgba(44,62,80,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter Tight", -apple-system, Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--slate-ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.65;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0ms !important;
+        transition-duration: 0ms !important;
+      }
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 72px;
+      background: rgba(244,239,232,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 200ms ease;
+    }
+
+    nav.scrolled { box-shadow: 0 1px 18px rgba(44,62,80,.08); }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img { height: 30px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--slate-ink);
+      text-decoration: none;
+      letter-spacing: .01em;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 140ms ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 100%;
+      height: 1px;
+      background: var(--terracotta);
+      transition: right 220ms ease;
+    }
+
+    .nav-links a:hover { color: var(--slate); }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { right: 0; }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--slate-ink);
+    }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--paper);
+      z-index: 200;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 4rem 2.5rem;
+    }
+
+    .nav-overlay.is-open { display: flex; }
+
+    .nav-overlay-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--slate-soft);
+    }
+
+    .nav-overlay ul { list-style: none; }
+    .nav-overlay ul li { margin-bottom: 1.75rem; }
+    .nav-overlay ul a {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: -.025em;
+      color: var(--slate-ink);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       PAGE HEADER
+    ============================================================ */
+    .page-header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .page-header .eyebrow { margin-bottom: 1.25rem; }
+
+    .page-header h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 300;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      color: var(--slate-ink);
+      margin-bottom: .75rem;
+    }
+
+    .page-header-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .725rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--slate-soft);
+      opacity: .65;
+      margin-top: 1rem;
+    }
+
+    /* ============================================================
+       LEGAL CONTENT
+    ============================================================ */
+    .legal-content {
+      padding: 4rem 0 6rem;
+      max-width: 720px;
+    }
+
+    .legal-content section {
+      margin-bottom: 3rem;
+    }
+
+    .legal-content h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--slate-ink);
+      margin-bottom: .875rem;
+      letter-spacing: -.01em;
+    }
+
+    .legal-content h3 {
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--slate-ink);
+      margin-bottom: .5rem;
+      margin-top: 1.25rem;
+      letter-spacing: -.005em;
+    }
+
+    .legal-content p {
+      font-size: .9375rem;
+      color: var(--slate-soft);
+      line-height: 1.7;
+      margin-bottom: .75rem;
+    }
+
+    .legal-content p:last-child { margin-bottom: 0; }
+
+    .legal-content ul {
+      list-style: none;
+      margin-bottom: .75rem;
+    }
+
+    .legal-content ul li {
+      font-size: .9375rem;
+      color: var(--slate-soft);
+      line-height: 1.7;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: .25rem;
+    }
+
+    .legal-content ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--terracotta);
+      font-size: .75em;
+      top: .2em;
+    }
+
+    .legal-content a {
+      color: var(--terracotta);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 140ms ease;
+    }
+
+    .legal-content a:hover {
+      border-bottom-color: var(--terracotta);
+    }
+
+    .legal-rule {
+      border: none;
+      border-top: 1px solid var(--rule-soft);
+      margin: 2.5rem 0;
+    }
+
+    .legal-note {
+      background: var(--sand);
+      padding: 1.5rem 1.75rem;
+      font-size: .875rem;
+      color: var(--slate-soft);
+      line-height: 1.65;
+    }
+
+    .legal-note strong {
+      font-weight: 500;
+      color: var(--slate-ink);
+    }
+
+    /* Table of contents */
+    .toc {
+      background: var(--sand);
+      padding: 1.75rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .toc-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--slate-soft);
+      margin-bottom: .875rem;
+      display: block;
+      opacity: .65;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .toc ol li {
+      counter-increment: toc;
+      margin-bottom: .375rem;
+    }
+
+    .toc ol li a {
+      font-size: .875rem;
+      color: var(--slate-soft);
+      text-decoration: none;
+      display: flex;
+      gap: .75rem;
+      align-items: baseline;
+      transition: color 140ms ease;
+    }
+
+    .toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .65rem;
+      color: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .toc ol li a:hover { color: var(--slate-ink); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--slate);
+      color: var(--paper);
+      padding: 4.5rem 0 2.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.75fr 1fr 1fr;
+      gap: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(244,239,232,.12);
+    }
+
+    .footer-brand img {
+      height: 26px;
+      width: auto;
+      margin-bottom: 1.25rem;
+      opacity: .88;
+    }
+
+    .footer-tagline {
+      font-size: .875rem;
+      color: rgba(244,239,232,.5);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .footer-col h4 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(244,239,232,.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .625rem; }
+    .footer-col ul a {
+      font-size: .875rem;
+      color: rgba(244,239,232,.65);
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+
+    .footer-col ul a:hover { color: var(--paper); }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .6rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(244,239,232,.3);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 860px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .page-header { padding: 3.5rem 0 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-brand { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Gegenwind — zur Startseite">
+      <img src="assets/gegenwind-lockup-horizontal.png" alt="Gegenwind">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#themen">Themen</a></li>
+      <li><a href="index.html#ueber">Über mich</a></li>
+      <li><a href="blog/">Blog</a></li>
+      <li><a href="index.html#buecher">Bücher</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu" onclick="openMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="nav-overlay-close" aria-label="Menü schliessen" onclick="closeMenu()">Schliessen ✕</button>
+  <ul>
+    <li><a href="index.html#themen" onclick="closeMenu()">Themen</a></li>
+    <li><a href="index.html#ueber" onclick="closeMenu()">Über mich</a></li>
+    <li><a href="blog/" onclick="closeMenu()">Blog</a></li>
+    <li><a href="index.html#buecher" onclick="closeMenu()">Bücher</a></li>
+    <li><a href="index.html#kontakt" onclick="closeMenu()">Kontakt</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Rechtliches</span>
+    <h1>Datenschutzerklärung</h1>
+    <p class="page-header-meta">Stand: April 2026 · Gilt für gegenwind.ch</p>
+  </div>
+</header>
+
+<!-- LEGAL CONTENT -->
+<main>
+  <div class="container">
+    <div class="legal-content">
+
+      <!-- Table of Contents -->
+      <nav class="toc" aria-label="Inhaltsverzeichnis">
+        <span class="toc-label">Inhalt</span>
+        <ol>
+          <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+          <li><a href="#erhobene-daten">Erhobene Daten</a></li>
+          <li><a href="#zweck">Zweck der Verarbeitung</a></li>
+          <li><a href="#rechtsgrundlage">Rechtsgrundlage</a></li>
+          <li><a href="#auftragsverarbeiter">Auftragsverarbeiter</a></li>
+          <li><a href="#ausland">Datenweitergabe ins Ausland</a></li>
+          <li><a href="#speicherdauer">Speicherdauer</a></li>
+          <li><a href="#rechte">Ihre Rechte</a></li>
+          <li><a href="#analytics">Analytics</a></li>
+          <li><a href="#kontakt-ds">Kontakt bei Datenschutzfragen</a></li>
+        </ol>
+      </nav>
+
+      <section id="verantwortlicher">
+        <h2>1. Verantwortlicher</h2>
+        <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:</p>
+        <address style="font-style:normal; font-family:'JetBrains Mono',monospace; font-size:.8125rem; line-height:1.8; color:var(--slate-soft); margin-top:.75rem;">
+          Thomas Meier<br>
+          [Strasse und Hausnummer]<br>
+          [PLZ] Zürich<br>
+          Schweiz<br>
+          E-Mail: <a href="mailto:kontakt@gegenwind.ch">kontakt@gegenwind.ch</a>
+        </address>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="erhobene-daten">
+        <h2>2. Erhobene Daten</h2>
+
+        <h3>2.1 Kontaktformular</h3>
+        <p>Wenn du das Kontaktformular verwendest, erheben wir folgende Angaben:</p>
+        <ul>
+          <li>Name (freiwillig)</li>
+          <li>E-Mail-Adresse (Pflichtfeld)</li>
+          <li>Nachrichtentext (Pflichtfeld)</li>
+          <li>Zeitstempel der Übertragung</li>
+        </ul>
+        <p>Ein Honeypot-Feld wird technisch zur Spam-Abwehr eingesetzt und enthält niemals echte Nutzerdaten.</p>
+
+        <h3>2.2 Server-Logdateien</h3>
+        <p>Beim Aufruf dieser Website werden durch den Hosting-Anbieter (Vercel) automatisch technische Zugriffsdaten erfasst:</p>
+        <ul>
+          <li>IP-Adresse (anonymisiert)</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>Aufgerufene URL</li>
+          <li>HTTP-Statuscode, übertragene Datenmenge</li>
+          <li>Referrer-URL, Browser und Betriebssystem (User-Agent)</li>
+        </ul>
+        <p>Diese Daten werden nicht mit anderen Quellen zusammengeführt und nach spätestens 7 Tagen automatisch gelöscht.</p>
+
+        <h3>2.3 Cookies</h3>
+        <p>Diese Website setzt keine Marketing-Cookies und keine Tracking-Cookies. Es werden ausschliesslich technisch notwendige Session-Daten verwendet, die nach dem Schliessen des Browsers automatisch gelöscht werden.</p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="zweck">
+        <h2>3. Zweck der Verarbeitung</h2>
+        <ul>
+          <li>Bearbeitung von Kontaktanfragen und Beantwortung von Nachrichten</li>
+          <li>Sicherstellung des technischen Betriebs der Website</li>
+          <li>Schutz vor missbräuchlicher Nutzung (Spam-Abwehr)</li>
+          <li>Statistische Auswertung anonymer Nutzungsdaten zur Verbesserung des Angebots</li>
+        </ul>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="rechtsgrundlage">
+        <h2>4. Rechtsgrundlage</h2>
+        <p>Die Verarbeitung erfolgt auf Grundlage des Schweizerischen Datenschutzgesetzes (nDSG, in Kraft seit 1. September 2023) sowie, soweit anwendbar, der EU-Datenschutz-Grundverordnung (DSGVO).</p>
+        <ul>
+          <li><strong>Kontaktanfragen:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung/vorvertragliche Massnahmen) und überwiegendes berechtigtes Interesse (Art. 31 nDSG)</li>
+          <li><strong>Server-Logs:</strong> Berechtigtes Interesse an der Sicherstellung des Betriebs (Art. 6 Abs. 1 lit. f DSGVO / Art. 31 nDSG)</li>
+          <li><strong>Analytics:</strong> Anonyme Verarbeitung ohne Personenbezug — kein zusätzlicher Erlaubnisgrund erforderlich</li>
+        </ul>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="auftragsverarbeiter">
+        <h2>5. Auftragsverarbeiter</h2>
+
+        <h3>Vercel Inc. (Hosting)</h3>
+        <p>Die Website wird über Vercel Inc., 340 Pine Street, Suite 701, San Francisco, CA 94104, USA, gehostet. Mit Vercel besteht ein Datenverarbeitungsvertrag (DPA). Vercel verarbeitet technische Zugriffsdaten ausschliesslich im Rahmen der Bereitstellung des Hostings.</p>
+
+        <h3>Resend (E-Mail-Versand)</h3>
+        <p>Kontaktanfragen werden via Resend (Resend Inc., San Francisco, USA) übertragen. Mit Resend besteht ein DPA. Resend verarbeitet die Nachrichtendaten ausschliesslich zur Weiterleitung an den Verantwortlichen und speichert diese nicht dauerhaft.</p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="ausland">
+        <h2>6. Datenweitergabe ins Ausland</h2>
+        <p>Daten werden an Dienstleister in den USA übermittelt (Vercel, Resend). Der Schutz dieser Daten wird durch den Abschluss von EU-Standardvertragsklauseln (SCCs) gemäss Art. 46 DSGVO sowie durch entsprechende Garantien nach Art. 16 nDSG gewährleistet.</p>
+        <p>Eine Weitergabe an weitere Dritte — insbesondere an Werbetreibende — findet nicht statt.</p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="speicherdauer">
+        <h2>7. Speicherdauer</h2>
+        <ul>
+          <li><strong>Kontaktanfragen:</strong> Bis zur abschliessenden Bearbeitung der Anfrage, längstens 2 Jahre</li>
+          <li><strong>Server-Logs:</strong> Maximal 7 Tage, danach automatische Löschung durch Vercel</li>
+          <li><strong>Analytics-Daten:</strong> 13 Monate (anonymisiert, kein Personenbezug)</li>
+        </ul>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="rechte">
+        <h2>8. Ihre Rechte als betroffene Person</h2>
+        <p>Nach schweizerischem Datenschutzgesetz (nDSG) und DSGVO stehen dir folgende Rechte zu:</p>
+        <ul>
+          <li><strong>Auskunft</strong> über die zu deiner Person gespeicherten Daten (Art. 25 nDSG / Art. 15 DSGVO)</li>
+          <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 32 nDSG / Art. 16 DSGVO)</li>
+          <li><strong>Löschung</strong> deiner Daten (Art. 32 nDSG / Art. 17 DSGVO)</li>
+          <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+          <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+          <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+          <li><strong>Beschwerde</strong> bei der zuständigen Aufsichtsbehörde</li>
+        </ul>
+        <p>Zuständige Aufsichtsbehörde (Schweiz): <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter (EDÖB)</a></p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="analytics">
+        <h2>9. Analytics</h2>
+        <p>Diese Website verwendet <strong>Plausible Analytics</strong> — eine datenschutzfreundliche, cookielose Webanalyse-Lösung aus Europa. Plausible erfasst keine personenbezogenen Daten, setzt keine Cookies und erstellt keine Cross-Site-Tracking-Profile.</p>
+        <p>Die erfassten Metriken (z. B. Seitenaufrufe, Verweildauer, Land der Besucher) sind vollständig anonymisiert und nicht auf einzelne Personen zurückführbar. Es ist deshalb keine Cookie-Einwilligung erforderlich.</p>
+        <p>Betreiber: Plausible Insights OÜ, Västriku tn 2, 50403 Tartu, Estland. <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie von Plausible</a></p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <section id="kontakt-ds">
+        <h2>10. Kontakt bei Datenschutzfragen</h2>
+        <p>Für Fragen zum Datenschutz und zur Geltendmachung deiner Rechte wende dich bitte an:</p>
+        <p><a href="mailto:kontakt@gegenwind.ch">kontakt@gegenwind.ch</a></p>
+        <p>Wir bemühen uns, Anfragen innerhalb von 30 Tagen zu beantworten.</p>
+      </section>
+
+      <hr class="legal-rule">
+
+      <div class="legal-note">
+        <strong>Vertraulichkeit:</strong> Gegenwind behandelt alle Kontaktanfragen mit höchster Diskretion. Deine persönliche Situation und dein Name werden niemals ohne deine ausdrückliche Einwilligung weitergegeben — auch nicht an Beratungsstellen.
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/gegenwind-lockup-horizontal-white.png" alt="Gegenwind">
+        <p class="footer-tagline">Kurs halten, wenn der Wind dreht.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html#themen">Themen</a></li>
+          <li><a href="blog/">Blog</a></li>
+          <li><a href="index.html#buecher">Bücher</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="https://www.infosekta.ch" target="_blank" rel="noopener noreferrer">infoSekta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Gegenwind · Zürich
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  function openMenu() {
+    const overlay = document.getElementById('mobileMenu');
+    const btn = document.querySelector('.nav-burger');
+    overlay.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    const firstLink = overlay.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
+
+  function closeMenu() {
+    const overlay = document.getElementById('mobileMenu');
+    const btn = document.querySelector('.nav-burger');
+    overlay.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    btn.focus();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+
+</body>
+</html>
