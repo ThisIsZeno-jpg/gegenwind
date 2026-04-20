@@ -1,4 +1,5 @@
 import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -13,6 +14,10 @@ import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Use Postgres in production (Vercel/Neon), SQLite locally
+const databaseUri = process.env.DATABASE_URI || 'file:./gegenwind.db'
+const isPostgres = databaseUri.startsWith('postgres') || databaseUri.startsWith('postgresql')
 
 export default buildConfig({
   admin: {
@@ -45,11 +50,17 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URI || 'file:./gegenwind.db',
-    },
-  }),
+  db: isPostgres
+    ? postgresAdapter({
+        pool: {
+          connectionString: databaseUri,
+        },
+      })
+    : sqliteAdapter({
+        client: {
+          url: databaseUri,
+        },
+      }),
   sharp,
   plugins: [],
   upload: {
